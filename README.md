@@ -1,7 +1,7 @@
-FastAPI Migrations
+FastAPI Migratie
 =============
 
-FastAPI Migrations is an extension that handles SQLAlchemy database migrations for FastAPI applications using Alembic. The database operations are provided as command-line arguments under the `fastmigrate` command.
+FastAPI Migratie is an extension that handles SQLAlchemy database migrations for FastAPI applications using Alembic. The database operations are provided as command-line arguments under the `fastmigrate` command.
 
 
 Requirements
@@ -13,14 +13,14 @@ Requirements
 Installation
 ------------
 
-Install FastAPI Migrations with `pip`:
+Install FastAPI Migratie with `pip`:
 
-    pip install fastapi_migrations
+    pip install fastapi_migratie
 
 Example
 -------
 
-Steps to handles database migrations through FastAPI Migrations:
+Steps to handles database migrations through FastAPI Migratie:
 - Use `fastmigrate init` to generate the template and inialize the alembic template
 - don't forget to import meta data to `env.py` file
 - follow the FastAPI instructions to set the database configurations [reference](https://fastapi.tiangolo.com/advanced/sql-databases-peewee/)
