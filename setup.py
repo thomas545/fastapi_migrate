@@ -11,7 +11,7 @@ f.close()
 
 
 setup(
-    name='pubsub-connectors',
+    name='fastapi_migrate',
     version="1.0.0",
     author='Thomas Saied',
     author_email="thomas.adel31@gmail.com",
