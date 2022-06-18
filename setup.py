@@ -27,7 +27,6 @@ setup(
         "fastapi >= 0.78.0",
         "SQLAlchemy >= 1.4.37",
         "alembic >= 1.8.0",
-        "typer >= 0.4.1",
     ],
     tests_require=[
         'pytest==7.1.1',
