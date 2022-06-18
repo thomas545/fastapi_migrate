@@ -42,4 +42,9 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Software Development'
     ],
+
+    entry_points='''
+        [console_scripts]
+        fastmigrate=migrations.cli:db
+    ''',
 )

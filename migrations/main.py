@@ -1,18 +1,11 @@
 from functools import wraps
 import os
-import typer
 import logging
 import sys
 from alembic import __version__ as __alembic_version__
 from alembic.config import Config as AlembicConfig
 from alembic import command
 from alembic.util import CommandError
-
-app = typer.Typer(
-    add_completion=False,
-    help="FastAPI migrations made easy!",
-    name="FastAPI Migrations",
-)
 
 
 alembic_version = tuple([int(v) for v in __alembic_version__.split(".")[0:3]])
@@ -31,6 +24,7 @@ class Config(AlembicConfig):
         return os.path.join(package_dir, "templates")
 
 
+
 def catch_errors(f):
     @wraps(f)
     def wrapped(*args, **kwargs):
@@ -43,7 +37,6 @@ def catch_errors(f):
     return wrapped
 
 
-@app.command()
 @catch_errors
 def list_templates():
     """List available templates."""
@@ -57,7 +50,6 @@ def list_templates():
         config.print_stdout("%s - %s", tempname, synopsis)
 
 
-@app.command()
 @catch_errors
 def init(directory=None, multidb=False, template=None, package=False):
     """Creates a new migration repository"""
@@ -74,7 +66,6 @@ def init(directory=None, multidb=False, template=None, package=False):
     command.init(config, directory, template=template, package=package)
 
 
-@app.command()
 @catch_errors
 def revision(
     directory=None,
@@ -103,7 +94,6 @@ def revision(
     )
 
 
-@app.command()
 @catch_errors
 def migrate(
     directory=None,
@@ -131,7 +121,6 @@ def migrate(
     )
 
 
-@app.command()
 @catch_errors
 def edit(directory=None, revision="current"):
     """Edit current revision."""
@@ -142,7 +131,6 @@ def edit(directory=None, revision="current"):
         raise RuntimeError("Alembic 0.8.0 or greater is required")
 
 
-@app.command()
 @catch_errors
 def merge(directory=None, revisions="", message=None, branch_label=None, rev_id=None):
     """Merge two revisions together.  Creates a new migration file"""
@@ -152,7 +140,6 @@ def merge(directory=None, revisions="", message=None, branch_label=None, rev_id=
     )
 
 
-@app.command()
 @catch_errors
 def upgrade(directory=None, revision="head", sql=False, tag=None, x_arg=None):
     """Upgrade to a later version"""
@@ -160,7 +147,6 @@ def upgrade(directory=None, revision="head", sql=False, tag=None, x_arg=None):
     command.upgrade(config, revision, sql=sql, tag=tag)
 
 
-@app.command()
 @catch_errors
 def downgrade(directory=None, revision="-1", sql=False, tag=None, x_arg=None):
     """Revert to a previous version"""
@@ -170,7 +156,6 @@ def downgrade(directory=None, revision="-1", sql=False, tag=None, x_arg=None):
     command.downgrade(config, revision, sql=sql, tag=tag)
 
 
-@app.command()
 @catch_errors
 def show(directory=None, revision="head"):
     """Show the revision denoted by the given symbol."""
@@ -178,7 +163,6 @@ def show(directory=None, revision="head"):
     command.show(config, revision)
 
 
-@app.command()
 @catch_errors
 def history(directory=None, rev_range=None, verbose=False, indicate_current=False):
     """List changeset scripts in chronological order."""
@@ -191,7 +175,6 @@ def history(directory=None, rev_range=None, verbose=False, indicate_current=Fals
         command.history(config, rev_range, verbose=verbose)
 
 
-@app.command()
 @catch_errors
 def heads(directory=None, verbose=False, resolve_dependencies=False):
     """Show current available heads in the script directory"""
@@ -199,7 +182,6 @@ def heads(directory=None, verbose=False, resolve_dependencies=False):
     command.heads(config, verbose=verbose, resolve_dependencies=resolve_dependencies)
 
 
-@app.command()
 @catch_errors
 def branches(directory=None, verbose=False):
     """Show current branch points"""
@@ -207,7 +189,6 @@ def branches(directory=None, verbose=False):
     command.branches(config, verbose=verbose)
 
 
-@app.command()
 @catch_errors
 def current(directory=None, verbose=False):
     """Display the current revision for each database."""
@@ -215,30 +196,9 @@ def current(directory=None, verbose=False):
     command.current(config, verbose=verbose)
 
 
-@app.command()
 @catch_errors
 def stamp(directory=None, revision="head", sql=False, tag=None):
     """'stamp' the revision table with the given revision; don't run any
     migrations"""
     config = Config(directory)
     command.stamp(config, revision, sql=sql, tag=tag)
-
-
-def version_callback(value: bool):
-    if value:
-        version = "1.0.0"
-        typer.echo(f"version {version}")
-        raise typer.Exit()
-
-
-@app.callback()
-def main(
-    version: bool = typer.Option(
-        None,
-        "--version",
-        callback=version_callback,
-        is_eager=True,
-        help="Show the Manage FastAPI version information.",
-    )
-):
-    ...
