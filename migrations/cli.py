@@ -1,18 +1,18 @@
 import click
-from main import list_templates as _list_templates
-from main import init as _init
-from main import revision as _revision
-from main import migrate as _migrate
-from main import edit as _edit
-from main import merge as _merge
-from main import upgrade as _upgrade
-from main import downgrade as _downgrade
-from main import show as _show
-from main import history as _history
-from main import heads as _heads
-from main import branches as _branches
-from main import current as _current
-from main import stamp as _stamp
+from .main import list_templates as _list_templates
+from .main import init as _init
+from .main import revision as _revision
+from .main import migrate as _migrate
+from .main import edit as _edit
+from .main import merge as _merge
+from .main import upgrade as _upgrade
+from .main import downgrade as _downgrade
+from .main import show as _show
+from .main import history as _history
+from .main import heads as _heads
+from .main import branches as _branches
+from .main import current as _current
+from .main import stamp as _stamp
 
 
 @click.group()
