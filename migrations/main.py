@@ -58,8 +58,11 @@ def init(directory=None, multidb=False, template=None, package=False):
     template_directory = None
     if template is not None and ("/" in template or "\\" in template):
         template_directory, template = os.path.split(template)
-    config = Config(template_directory=template_directory)
-    config.set_main_option("script_location", directory)
+    
+    config = Config(os.path.join(directory, 'alembic.ini'))
+    config.set_main_option('script_location', directory)
+    # config = Config(template_directory=template_directory)
+    # config.set_main_option("script_location", directory)
     config.config_file_name = os.path.join(directory, "alembic.ini")
     if template is None:
         template = "fastapi"
