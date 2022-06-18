@@ -3,6 +3,14 @@ FastAPI Migrations
 
 FastAPI Migrations is an extension that handles SQLAlchemy database migrations for FastAPI applications using Alembic. The database operations are provided as command-line arguments under the `fastmigrate` command.
 
+
+Requirements
+------------
+- fastapi >= 0.78.0
+- SQLAlchemy >= 1.4.37
+- alembic >= 1.8.0
+- typer >= 0.4.1
+
 Installation
 ------------
 
