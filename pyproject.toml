@@ -1,5 +1,5 @@
 [build-system]
-requires = ["wheel"]
+requires = ["wheel", "setuptools"]
 
 [tool.flit.metadata]
 module = "fastapi_migrate"
