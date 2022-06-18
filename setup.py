@@ -44,6 +44,6 @@ setup(
 
     entry_points='''
         [console_scripts]
-        fastmigrate=core.cli:db
+        fastmigrate=fastapi_migrate.cli:db
     ''',
 )
