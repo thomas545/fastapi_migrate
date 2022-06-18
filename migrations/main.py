@@ -79,8 +79,8 @@ def revision(
     rev_id=None,
 ):
     """Create a new revision file."""
-    opts = ["autogenerate"] if autogenerate else None
-    config = Config(directory, opts=opts)
+    cmd_opts = ["autogenerate"] if autogenerate else None
+    config = Config(directory, cmd_opts=cmd_opts)
     command.revision(
         config,
         message,
@@ -107,7 +107,7 @@ def migrate(
     x_arg=None,
 ):
     """Alias for 'revision --autogenerate'"""
-    config = Config(directory, opts=["autogenerate"], x_arg=x_arg)
+    config = Config(directory, cmd_opts=["autogenerate"], x_arg=x_arg)
     command.revision(
         config,
         message,
