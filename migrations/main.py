@@ -104,10 +104,9 @@ def migrate(
     branch_label=None,
     version_path=None,
     rev_id=None,
-    x_arg=None,
 ):
     """Alias for 'revision --autogenerate'"""
-    config = Config(directory, cmd_opts=["autogenerate"], x_arg=x_arg)
+    config = Config(directory, cmd_opts=["autogenerate"])
     command.revision(
         config,
         message,
@@ -141,16 +140,16 @@ def merge(directory=None, revisions="", message=None, branch_label=None, rev_id=
 
 
 @catch_errors
-def upgrade(directory=None, revision="head", sql=False, tag=None, x_arg=None):
+def upgrade(directory=None, revision="head", sql=False, tag=None,):
     """Upgrade to a later version"""
-    config = Config(directory, x_arg=x_arg)
+    config = Config(directory)
     command.upgrade(config, revision, sql=sql, tag=tag)
 
 
 @catch_errors
-def downgrade(directory=None, revision="-1", sql=False, tag=None, x_arg=None):
+def downgrade(directory=None, revision="-1", sql=False, tag=None):
     """Revert to a previous version"""
-    config = Config(directory, x_arg=x_arg)
+    config = Config(directory)
     if sql and revision == "-1":
         revision = "head:-1"
     command.downgrade(config, revision, sql=sql, tag=tag)
