@@ -93,11 +93,11 @@ def revision(directory, message, autogenerate, sql, head, splice, branch_label,
 @click.option('-x', '--x-arg', multiple=True,
               help='Additional arguments consumed by custom env.py scripts')
 def migrate(directory, message, sql, head, splice, branch_label, version_path,
-            rev_id, x_arg):
+            rev_id):
     """Autogenerate a new revision file (Alias for
     'revision --autogenerate')"""
     _migrate(directory, message, sql, head, splice, branch_label, version_path,
-             rev_id, x_arg)
+             rev_id)
 
 
 @db.command()
@@ -136,9 +136,9 @@ def merge(directory, message, branch_label, rev_id, revisions):
 @click.option('-x', '--x-arg', multiple=True,
               help='Additional arguments consumed by custom env.py scripts')
 @click.argument('revision', default='head')
-def upgrade(directory, sql, tag, x_arg, revision):
+def upgrade(directory, sql, tag, revision):
     """Upgrade to a later version"""
-    _upgrade(directory, revision, sql, tag, x_arg)
+    _upgrade(directory, revision, sql, tag)
 
 
 @db.command()
@@ -153,9 +153,9 @@ def upgrade(directory, sql, tag, x_arg, revision):
 @click.option('-x', '--x-arg', multiple=True,
               help='Additional arguments consumed by custom env.py scripts')
 @click.argument('revision', default='-1')
-def downgrade(directory, sql, tag, x_arg, revision):
+def downgrade(directory, sql, tag, revision):
     """Revert to a previous version"""
-    _downgrade(directory, revision, sql, tag, x_arg)
+    _downgrade(directory, revision, sql, tag)
 
 
 @db.command()

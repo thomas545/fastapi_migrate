@@ -140,7 +140,7 @@ def merge(directory=None, revisions="", message=None, branch_label=None, rev_id=
 
 
 @catch_errors
-def upgrade(directory=None, revision="head", sql=False, tag=None,):
+def upgrade(directory=None, revision="head", sql=False, tag=None):
     """Upgrade to a later version"""
     config = Config(directory)
     command.upgrade(config, revision, sql=sql, tag=tag)
